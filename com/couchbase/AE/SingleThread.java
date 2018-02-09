@@ -65,44 +65,30 @@ public class SingleThread {
         }
     }
 
-
-    /*public static void main(String args[]) {
-
-        SingleThread singleThread = new SingleThread();
-        singleThread.process50Pops();
-        //singleThread.qBuild();
-    }*/
-
     public static void main (String[] args) throws InterruptedException
     {
         List<Worker> workers = new ArrayList<Worker>();
-
         System.out.println("This is currently running on the main thread, " + "the id is: " + Thread.currentThread().getId());
 
         Date start = new Date();
-
         // start i number of workers
         for (int i=0; i<10; i++)
         {
             workers.add(new Worker());
         }
 
-        // We must force the main thread to wait for all the workers
-        //  to finish their work before we check to see how long it
-        //  took to complete
         for (Worker worker : workers)
         {
             while (worker.running)
             {
-                //worker.wait();
-                Thread.sleep(1);
+                worker.wait();
+                //Thread.sleep(1);
             }
         }
 
         Date end = new Date();
-
         long difference = end.getTime() - start.getTime();
-
         System.out.println ("This whole process took: " + difference/1000 + " seconds.");
+
     }
 }
