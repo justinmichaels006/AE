@@ -72,17 +72,14 @@ public class SingleThread {
 
         Date start = new Date();
         // start i number of workers
-        for (int i=0; i<10; i++)
-        {
+        for (int i=0; i<10; i++) {
             workers.add(new Worker());
         }
 
-        for (Worker worker : workers)
-        {
+        for (Worker worker : workers) {
             while (worker.running)
             {
                 worker.wait();
-                //Thread.sleep(1);
             }
         }
 
