@@ -79,7 +79,7 @@ public class SingleThread {
         for (Worker worker : workers) {
             while (worker.running)
             {
-                worker.wait();
+                Thread.sleep(1);
             }
         }
 
