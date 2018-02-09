@@ -15,9 +15,8 @@ public class Worker implements Runnable
         public void run()
         {
             this.running = true;
-            System.out.println("This is currently running on a separate thread, " +
-                    "the id is: " + Thread.currentThread().getId());
             singleThread.process50Pops();
+            System.out.println("Separate thread complete, the id is: " + Thread.currentThread().getId());
             this.running = false;
         }
     }

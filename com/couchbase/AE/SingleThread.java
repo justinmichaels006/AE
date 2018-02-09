@@ -72,7 +72,7 @@ public class SingleThread {
 
         Date start = new Date();
         // start i number of workers
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<5; i++) {
             workers.add(new Worker());
         }
 
@@ -85,7 +85,6 @@ public class SingleThread {
 
         Date end = new Date();
         long difference = end.getTime() - start.getTime();
-        System.out.println ("This whole process took: " + difference/1000 + " seconds.");
-
+        System.out.println ("Process time: " + difference/1000 + " seconds.");
     }
 }
