@@ -8,7 +8,10 @@ import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.env.CouchbaseEnvironment;
 import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Queue;
 
 public class CacheManager {
 
@@ -18,6 +21,7 @@ public class CacheManager {
         private static CouchbaseCluster couchbaseCluster;
 
         private static CouchbaseBucket couchbaseBucket;
+        static {System.setProperty("com.couchbase.datastructureCASRetryLimit", "100");};
 
         public static CouchbaseBucket getInstance()
         {
