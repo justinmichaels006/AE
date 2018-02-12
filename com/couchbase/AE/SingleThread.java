@@ -1,6 +1,8 @@
 package com.couchbase.AE;
 
 import com.couchbase.client.java.CouchbaseBucket;
+import com.couchbase.client.java.ReplicateTo;
+import com.couchbase.client.java.datastructures.MutationOptionBuilder;
 import com.couchbase.client.java.datastructures.collections.CouchbaseQueue;
 import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.json.JsonObject;
@@ -9,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class SingleThread {
 
@@ -21,7 +24,7 @@ public class SingleThread {
 
             try {
 
-                String key = cachemanager1.queuePop("AE::queue::1", String.class);
+                String key = cachemanager1.queuePop("AE::queue::1", String.class, MutationOptionBuilder.builder().replicateTo(ReplicateTo.ONE), 100, TimeUnit.SECONDS);
                 JsonObject content = JsonObject.empty().put("name", "Justin");
                 JsonDocument doc = JsonDocument.create(key, content);
                 cachemanager1.upsert(doc);
